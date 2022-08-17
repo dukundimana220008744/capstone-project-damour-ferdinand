@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Otika - Admin Dashboard Template</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'assets/css/app.min.css'%}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">
+  <link rel="stylesheet" href="{% static 'assets/css/components.css'%}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/custom.css'%}">
+  <link rel='shortcut icon' type='image/x-icon' href="{% static 'assets/img/favicon.ico' %} "/>
+</head>
+
+<body>
+ 
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+            <li>
+              <form class="form-inline mr-auto">
+                {% csrf_token %}
+                <div class="search-element">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200" name="s">
+                  <button class="btn" type="submit">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </form>
+            </li>
+          </ul>
+        </div>
+        <ul class="navbar-nav navbar-right">
+        
+            <li class="dropdown"><a href="#" data-toggle="dropdown"
+                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                {% for i in us %}
+                  <img alt="image" src="{{i.image.url}}"
+                  class="user-img-radious-style">
+                  {% endfor %}
+                  <span class="d-sm-none d-lg-inline-block"></span></a>
+              <div class="dropdown-menu dropdown-menu-right pullDown">
+                <div class="dropdown-title">Hello {{user.get_username}}</div>
+                
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'logout' %}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+        
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{% url 'index'%}">  <span
+                class="logo-name">Cinemania</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Main</li>
+            <li class="dropdown active">
+              <a href="/dashboard/" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+            </li>
+           
+            <li class="dropdown">
+              <a href="{% url 'add' %}" class="menu-toggle nav-link has-dropdown"><i data-feather="layout"></i><span>Add new movie</span></a>
+             
+            </li>
+            
+            
+            
+          </ul>
+        </aside>
+      </div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="row ">
+            {% for m in movies %}
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="card">
+                <div class="card-statistic-4">
+                  <div class="align-items-center justify-content-between">
+                    <div class="row ">
+                      <center>
+                      Title:<b>{{m.title}}</b><br>
+                      Main Actor:<b>{{m.actor}}</b><br>
+                      Trailer Url:<b><a href="{{m.trailer}}">{{m.trailer}}</a></b><br>
+                      Realesed Date:<b>{{m.realeseddate}}</b><br>
+                      Poster:<b>{{m.poster}}</b><br>
+                      Username Poster:<b>{{m.user}}</b><br>
+                      Movie Genre:<b>{{m.genre}}</b><br>
+                      <img src="{{ m.images.url }}" alt="">
+                    
+                    </center>
+                     
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
+                        <div class="banner-img">
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+           
+            
+           
+          </div>
+         
+      <footer class="main-footer">
+        <div class="footer-left">
+          <a href="templateshub.net">Damour and feredina</a></a>
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!-- General JS Scripts -->
+  <script src="{% static 'assets/js/app.min.js'%}"></script>
+  <!-- JS Libraies -->
+  <script src="{% static 'assets/bundles/apexcharts/apexcharts.min.js'%}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{% static 'assets/js/page/index.js'%}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'assets/js/scripts.jsv'%}"></script>
+  <!-- Custom JS File -->
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+</body>
+
+
+<!-- index.html  21 Nov 2019 03:47:04 GMT -->
+</html>
